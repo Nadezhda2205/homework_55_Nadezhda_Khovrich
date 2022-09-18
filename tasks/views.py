@@ -12,5 +12,12 @@ def index_view(request):
 
 def add_view(request:WSGIRequest):
     if request.method == 'POST':
+        task_data = {
+            'description': request.POST.get('description'),
+            'status': request.POST.get('status'),
+            'deadline': request.POST.get('deadline')
+        }
+
+        Task.objects.create(**task_data)
         return redirect('/')
     return render(request=request, template_name='add.html')
