@@ -21,3 +21,6 @@ def add_view(request:WSGIRequest):
         Task.objects.create(**task_data)
         return redirect('/')
     return render(request=request, template_name='add.html')
+
+def edit_view(request):
+    return render(request=request, template_name='edit.html')
