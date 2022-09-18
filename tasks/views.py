@@ -50,8 +50,6 @@ def edit_view(request: WSGIRequest):
 
 def delete_view(request):
     pk = request.GET.get('pk')
-    task: Task = Task.objects.get(pk=pk)
-    task.delete()
-    task.save()
+    Task.objects.filter(pk=pk).delete()
     return redirect('/')
 
