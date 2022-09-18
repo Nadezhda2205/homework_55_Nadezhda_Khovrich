@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from tasks.models import Task
 from django.core.handlers.wsgi import WSGIRequest
 from tasks.services.config import CHOICES
+import datetime
 
 
 def index_view(request):
@@ -38,7 +39,8 @@ def edit_view(request: WSGIRequest):
         return redirect('/')
 
     pk = request.GET.get('pk')
-    task = Task.objects.get(pk=pk)
+    task: Task = Task.objects.get(pk=pk)
+    task.deadline = datetime.datetime.strftime(task.deadline, '%Y-%m-%d')
     context = {
         'task': task
     }
