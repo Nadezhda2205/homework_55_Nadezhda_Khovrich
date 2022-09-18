@@ -7,3 +7,7 @@ def index_view(request):
         'tasks': tasks
     }
     return render(request=request, template_name='index.html', context=context)
+
+
+def add_view(request):
+    return render(request=request, template_name='add.html')
