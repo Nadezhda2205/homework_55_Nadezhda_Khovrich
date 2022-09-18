@@ -13,9 +13,9 @@
         <p>Статус:</p>
         {% comment %} подставить текущий комментарий {% endcomment %}
         <select name="status">
-            <option value="new">Новая задача</option>
-            <option value="process">В процессе</option>
-            <option value="done">Сделано</option>
+            {% for choice in choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
         </select>
         <p>Дата выполнения:</p>
         <input type="text" name="deadline" value="{{ task.deadline }}"> 

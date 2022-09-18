@@ -42,7 +42,8 @@ def edit_view(request: WSGIRequest):
     task: Task = Task.objects.get(pk=pk)
     task.deadline = datetime.datetime.strftime(task.deadline, '%Y-%m-%d')
     context = {
-        'task': task
+        'task': task,
+        'choices': CHOICES
     }
     return render(request=request, template_name='edit.html', context=context)
 
