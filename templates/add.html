@@ -7,7 +7,7 @@
 
  {% block content %}
     <p>Новая задача:</p>
-    <form action="/add/" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
         <textarea name="description" cols="30" rows="10"></textarea>
         <p>Статус:</p>

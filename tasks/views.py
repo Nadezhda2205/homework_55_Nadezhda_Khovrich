@@ -23,6 +23,15 @@ def add_view(request:WSGIRequest):
     return render(request=request, template_name='add.html')
 
 def edit_view(request: WSGIRequest):
+    if request.method == 'POST':
+        pk = request.GET.get('pk')
+        task: Task = Task.objects.get(pk=pk)
+        task.description = request.POST.get('description')
+        task.status = request.POST.get('status')
+        task.deadline = request.POST.get('deadline')
+        task.save()
+        return redirect('/')
+
     pk = request.GET.get('pk')
     task = Task.objects.get(pk=pk)
     context = {
