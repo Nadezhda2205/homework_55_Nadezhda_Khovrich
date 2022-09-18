@@ -9,15 +9,16 @@
     <p>Задача:</p>
     <form action="/edit/" method="POST">
         {% csrf_token %}
-        <textarea name="description" cols="30" rows="10"></textarea>
+        <textarea name="description" cols="30" rows="10">{{ task.description }}</textarea>
         <p>Статус:</p>
+        {% comment %} подставить текущий комментарий {% endcomment %}
         <select name="status">
             <option value="new">Новая задача</option>
             <option value="progress">В процессе</option>
             <option value="done">Сделано</option>
         </select>
         <p>Дата выполнения:</p>
-        <input type="text" name="deadline"> 
+        <input type="text" name="deadline" value="{{ task.deadline }}"> 
         <p><input type="submit" value="Сохранить"></p>
     </form>
 

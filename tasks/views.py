@@ -22,5 +22,10 @@ def add_view(request:WSGIRequest):
         return redirect('/')
     return render(request=request, template_name='add.html')
 
-def edit_view(request):
-    return render(request=request, template_name='edit.html')
+def edit_view(request: WSGIRequest):
+    pk = request.GET.get('pk')
+    task = Task.objects.get(pk=pk)
+    context = {
+        'task': task
+    }
+    return render(request=request, template_name='edit.html', context=context)
