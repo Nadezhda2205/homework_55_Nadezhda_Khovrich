@@ -11,11 +11,16 @@
         {% csrf_token %}
         <textarea name="description" cols="30" rows="10">{{ task.description }}</textarea>
         <p>Статус:</p>
-        {% comment %} подставить текущий комментарий {% endcomment %}
         <select name="status">
+
             {% for choice in choices %}
-            <option value="{{ choice.1 }}">{{ choice.1 }}</option>
+                {% if task.status == choice.1 %}
+                    <option value="{{ choice.1 }}" selected>{{ choice.1 }}</option>
+                {% else %}
+                    <option value="{{ choice.1 }}">{{ choice.1 }}</option>
+                {% endif %}
             {% endfor %}
+
         </select>
         <p>Дата выполнения:</p>
         <input type="text" name="deadline" value="{{ task.deadline }}"> 
