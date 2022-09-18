@@ -14,7 +14,7 @@
     <p>{{ task.description }}</p>
     <p>Статус: {{task.status}}</p> 
     <p>Дата выполнения: {{task.deadline}}</p>
-    <p><a href="/edit/?pk={{ task.pk }}">Редактировать</a><a href="#">Удалить</a></p>
+    <p><a href="/edit/?pk={{ task.pk }}">Редактировать</a><a href="/delete/?pk={{ task.pk }}">Удалить</a></p>
     <hr> 
 
     {% endfor %}

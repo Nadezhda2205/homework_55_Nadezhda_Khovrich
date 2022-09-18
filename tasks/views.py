@@ -38,3 +38,12 @@ def edit_view(request: WSGIRequest):
         'task': task
     }
     return render(request=request, template_name='edit.html', context=context)
+
+
+def delete_view(request):
+    pk = request.GET.get('pk')
+    task: Task = Task.objects.get(pk=pk)
+    task.delete()
+    task.save()
+    return redirect('/')
+
