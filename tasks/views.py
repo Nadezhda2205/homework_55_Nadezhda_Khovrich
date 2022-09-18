@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from tasks.models import Task
 from django.core.handlers.wsgi import WSGIRequest
+from tasks.services.config import CHOICES
+
 
 def index_view(request):
     tasks = Task.objects.all()
@@ -20,7 +22,10 @@ def add_view(request:WSGIRequest):
 
         Task.objects.create(**task_data)
         return redirect('/')
-    return render(request=request, template_name='add.html')
+    context = {
+        'choices': CHOICES
+    }    
+    return render(request=request, template_name='add.html', context=context)
 
 def edit_view(request: WSGIRequest):
     if request.method == 'POST':

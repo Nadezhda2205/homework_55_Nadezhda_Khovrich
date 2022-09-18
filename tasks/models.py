@@ -1,4 +1,5 @@
 from django.db import models
+from tasks.services.config import CHOICES
 
 class Task(models.Model):
     description = models.TextField(verbose_name='Задание', max_length=200, null=False, blank=False)
@@ -7,7 +8,8 @@ class Task(models.Model):
         max_length=15, 
         null=False, 
         blank=False, 
-        default='New')
+        default='New',
+        choices=CHOICES)
     deadline = models.DateField(verbose_name='Дата выполнения', default=None)
 
 

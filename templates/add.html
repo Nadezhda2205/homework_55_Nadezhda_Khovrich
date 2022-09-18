@@ -12,9 +12,9 @@
         <textarea name="description" cols="30" rows="10"></textarea>
         <p>Статус:</p>
         <select name="status">
-            <option value="new">Новая задача</option>
-            <option value="progress">В процессе</option>
-            <option value="done">Сделано</option>
+            {% for choice in choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
         </select>
         <p>Дата выполнения:</p>
         <input type="text" name="deadline"> 
