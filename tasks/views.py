@@ -53,3 +53,6 @@ def delete_view(request):
     Task.objects.filter(pk=pk).delete()
     return redirect('/')
 
+
+def about_view(request):
+    return render(request=request, template_name='about.html')
