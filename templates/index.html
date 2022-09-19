@@ -10,7 +10,13 @@
 
     {% for task in tasks %}
     <p>Задание:</p>
-    <p>{{ task.description }}</p>
+    
+    {% if task.status == choices.2.1 %}
+        <p class="decor">{{ task.description }}</p>
+    {% else %}
+        <p>{{ task.description }}</p>
+    {% endif %}
+    
     <p>Статус: {{task.status}}</p> 
     <p>Дата выполнения: {{task.deadline}}</p>
     <p><a href="/edit/?pk={{ task.pk }}">Редактировать</a><a href="/delete/?pk={{ task.pk }}">Удалить</a></p>

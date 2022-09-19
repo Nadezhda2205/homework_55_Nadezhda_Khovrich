@@ -8,7 +8,8 @@ import datetime
 def index_view(request):
     tasks = Task.objects.all()
     context = {
-        'tasks': tasks
+        'tasks': tasks,
+        'choices': CHOICES
     }
     return render(request=request, template_name='index.html', context=context)
 
