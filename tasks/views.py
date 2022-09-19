@@ -29,6 +29,7 @@ def add_view(request:WSGIRequest):
     }    
     return render(request=request, template_name='add.html', context=context)
 
+
 def edit_view(request: WSGIRequest):
     if request.method == 'POST':
         pk = request.GET.get('pk')

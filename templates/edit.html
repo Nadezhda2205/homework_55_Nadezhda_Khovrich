@@ -6,11 +6,11 @@
 
 
  {% block content %}
-    <p>Задача:</p>
+    <h5>Задача:</h5>
     <form action="" method="POST">
         {% csrf_token %}
         <textarea name="description" cols="30" rows="10">{{ task.description }}</textarea>
-        <p>Статус:</p>
+        <h5>Статус:</h5>
         <select name="status">
 
             {% for choice in choices %}
@@ -22,9 +22,9 @@
             {% endfor %}
 
         </select>
-        <p>Дата выполнения:</p>
+        <h5>Дата выполнения:</h5>
         <input type="text" name="deadline" value="{{ task.deadline }}"> 
-        <p><input type="submit" value="Сохранить"></p>
+        <p><input class="mt-3" type="submit" value="Сохранить"></p>
     </form>
 
 {% endblock %}
