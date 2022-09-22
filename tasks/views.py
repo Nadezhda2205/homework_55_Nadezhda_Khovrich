@@ -32,9 +32,8 @@ def add_view(request:WSGIRequest):
     return render(request=request, template_name='add.html', context=context)
 
 
-def edit_view(request: WSGIRequest):
+def edit_view(request: WSGIRequest, pk):
     if request.method == 'POST':
-        pk = request.GET.get('pk')
         task: Task = Task.objects.get(pk=pk)
         task.header = request.POST.get('header')
         task.description = request.POST.get('description')
@@ -43,7 +42,6 @@ def edit_view(request: WSGIRequest):
         task.save()
         return redirect('/')
 
-    pk = request.GET.get('pk')
     task: Task = Task.objects.get(pk=pk)
     task.deadline = datetime.datetime.strftime(task.deadline, '%Y-%m-%d')
     context = {
@@ -53,8 +51,7 @@ def edit_view(request: WSGIRequest):
     return render(request=request, template_name='edit.html', context=context)
 
 
-def delete_view(request):
-    pk = request.GET.get('pk')
+def delete_view(request, pk):
     Task.objects.filter(pk=pk).delete()
     return redirect('/')
 

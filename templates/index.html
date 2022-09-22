@@ -9,7 +9,7 @@
  <h1>Список задач</h1>   
 
     {% for task in tasks %}
-    <a href="/detail/{{ task.pk }}"><h5>Задание:</h5></a> 
+    <a href="{% url 'task_detail' task.pk  %}"><h5>Задание:</h5></a> 
     
     {% if task.status == choices.2.1 %}
         <p class="decor">{{ task.header }}</p>
@@ -21,8 +21,8 @@
     <p>{{task.status}}</p> 
     <h5>Дата выполнения:</h5> 
     <p>{{task.deadline}}</p>
-    <a href="/edit/?pk={{ task.pk }}">Редактировать</a>
-    <a href="/delete/?pk={{ task.pk }}">Удалить</a>
+    <a href="{% url 'task_edit' task.pk  %}">Редактировать</a>
+    <a href="{% url 'task_delete' task.pk  %}">Удалить</a>
     <hr> 
 
     {% endfor %}
