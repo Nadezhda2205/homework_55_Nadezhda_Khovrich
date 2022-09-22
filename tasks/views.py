@@ -23,8 +23,9 @@ def add_view(request:WSGIRequest):
             'deadline': request.POST.get('deadline')
         }
 
-        Task.objects.create(**task_data)
-        return redirect('/')
+        task: Task = Task.objects.create(**task_data)
+        return redirect('task_detail', pk=task.pk)
+
     context = {
         'choices': CHOICES
     }    
@@ -39,7 +40,7 @@ def edit_view(request: WSGIRequest, pk):
         task.status = request.POST.get('status')
         task.deadline = request.POST.get('deadline')
         task.save()
-        return redirect('/')
+        return redirect('task_detail', pk=pk)
 
     task.deadline = datetime.datetime.strftime(task.deadline, '%Y-%m-%d')
     context = {
