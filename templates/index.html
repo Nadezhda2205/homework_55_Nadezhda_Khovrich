@@ -9,7 +9,7 @@
  <h1>Список задач</h1>   
 
     {% for task in tasks %}
-    <h5>Задание:</h5>
+    <a href="/detail/{{ task.pk }}"><h5>Задание:</h5></a> 
     
     {% if task.status == choices.2.1 %}
         <p class="decor">{{ task.header }}</p>

@@ -1,3 +1,4 @@
+from asyncio import tasks
 from django.shortcuts import render, redirect
 from tasks.models import Task
 from django.core.handlers.wsgi import WSGIRequest
@@ -18,6 +19,7 @@ def add_view(request:WSGIRequest):
     if request.method == 'POST':
         task_data = {
             'header': request.POST.get('header'),
+            'description': request.POST.get('description'),
             'status': request.POST.get('status'),
             'deadline': request.POST.get('deadline')
         }
@@ -35,6 +37,7 @@ def edit_view(request: WSGIRequest):
         pk = request.GET.get('pk')
         task: Task = Task.objects.get(pk=pk)
         task.header = request.POST.get('header')
+        task.description = request.POST.get('description')
         task.status = request.POST.get('status')
         task.deadline = request.POST.get('deadline')
         task.save()
@@ -58,3 +61,11 @@ def delete_view(request):
 
 def about_view(request):
     return render(request=request, template_name='about.html')
+
+
+def detail_view(request, pk):
+    task = Task.objects.get(pk=pk)
+    context = {
+        'task': task
+    }
+    return render(request, 'detail.html', context=context)

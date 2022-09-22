@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Детальный просмотр 
+{% endblock %}
+
+
+ {% block content %}
+    <h4>Детальный просмотр задачи<h4>
+    <h5>Задача:</h5>
+        {{ task.header }}
+    <h5>Подробное описание:<h5>
+        {{ task.description }}   
+    <h5>Статус:</h5>
+        {{ task.status }}
+    <h5>Дата выполнения:</h5>
+        {{ task.deadline }}
+
+{% endblock %}

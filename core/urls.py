@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from tasks.views import index_view, add_view, edit_view, delete_view, about_view
+from tasks.views import index_view, add_view, edit_view, delete_view, about_view, detail_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -8,6 +8,7 @@ urlpatterns = [
     path('add/', add_view),
     path('edit/', edit_view),
     path('delete/', delete_view),
-    path('about/', about_view)
+    path('about/', about_view),
+    path('detail/<int:pk>', detail_view),
 ]
 

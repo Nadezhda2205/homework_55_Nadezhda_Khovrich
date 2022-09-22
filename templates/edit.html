@@ -10,6 +10,8 @@
     <form action="" method="POST">
         {% csrf_token %}
         <textarea name="header" cols="30" rows="10">{{ task.header }}</textarea>
+        <h5>Подробное описание:<h5>
+        <textarea name="description" cols="50" rows="10">{{ task.description }}</textarea>
         <h5>Статус:</h5>
         <select name="status">
 
