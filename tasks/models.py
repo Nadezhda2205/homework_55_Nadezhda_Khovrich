@@ -2,7 +2,8 @@ from django.db import models
 from tasks.services.config import CHOICES
 
 class Task(models.Model):
-    description = models.TextField(verbose_name='Задание', max_length=200, null=False, blank=False)
+    header = models.TextField(verbose_name='Задание', max_length=200, null=False, blank=False)
+    description = models.TextField(verbose_name='Описание', max_length=500, null=True, blank=True)
     status = models.CharField(
         verbose_name='Статус', 
         max_length=15, 
@@ -14,5 +15,5 @@ class Task(models.Model):
 
 
     def __str__(self):
-        return f"{self.description}"
+        return f"{self.header}"
         

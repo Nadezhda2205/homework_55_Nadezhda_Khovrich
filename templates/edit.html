@@ -9,7 +9,7 @@
     <h5>Задача:</h5>
     <form action="" method="POST">
         {% csrf_token %}
-        <textarea name="description" cols="30" rows="10">{{ task.description }}</textarea>
+        <textarea name="header" cols="30" rows="10">{{ task.header }}</textarea>
         <h5>Статус:</h5>
         <select name="status">
 

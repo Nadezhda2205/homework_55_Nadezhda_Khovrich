@@ -9,7 +9,7 @@
     <h5>Новая задача:</h5>
     <form action="" method="POST">
         {% csrf_token %}
-        <textarea name="description" cols="30" rows="10"></textarea>
+        <textarea name="header" cols="30" rows="10"></textarea>
         <h5>Статус:</h5>
         <select name="status">
             {% for choice in choices %}

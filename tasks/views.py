@@ -17,7 +17,7 @@ def index_view(request):
 def add_view(request:WSGIRequest):
     if request.method == 'POST':
         task_data = {
-            'description': request.POST.get('description'),
+            'header': request.POST.get('header'),
             'status': request.POST.get('status'),
             'deadline': request.POST.get('deadline')
         }
@@ -34,7 +34,7 @@ def edit_view(request: WSGIRequest):
     if request.method == 'POST':
         pk = request.GET.get('pk')
         task: Task = Task.objects.get(pk=pk)
-        task.description = request.POST.get('description')
+        task.header = request.POST.get('header')
         task.status = request.POST.get('status')
         task.deadline = request.POST.get('deadline')
         task.save()

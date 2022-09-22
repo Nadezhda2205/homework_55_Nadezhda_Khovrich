@@ -12,9 +12,9 @@
     <h5>Задание:</h5>
     
     {% if task.status == choices.2.1 %}
-        <p class="decor">{{ task.description }}</p>
+        <p class="decor">{{ task.header }}</p>
     {% else %}
-        <p>{{ task.description }}</p>
+        <p>{{ task.header }}</p>
     {% endif %}
 
     <h5>Статус:</h5> 

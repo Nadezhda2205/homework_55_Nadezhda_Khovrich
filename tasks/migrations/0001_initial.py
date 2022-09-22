@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='Task',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.TextField(max_length=200, verbose_name='Задание')),
+                ('header', models.TextField(max_length=200, verbose_name='Задание')),
                 ('status', models.CharField(default='New', max_length=15, verbose_name='Статус')),
                 ('deadline', models.DateField(default=None, verbose_name='Дата выполнения')),
             ],
