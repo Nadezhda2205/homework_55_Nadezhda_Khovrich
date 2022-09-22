@@ -1,5 +1,4 @@
-from asyncio import tasks
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from tasks.models import Task
 from django.core.handlers.wsgi import WSGIRequest
 from tasks.services.config import CHOICES
@@ -33,8 +32,8 @@ def add_view(request:WSGIRequest):
 
 
 def edit_view(request: WSGIRequest, pk):
+    task: Task = get_object_or_404(Task, pk=pk)
     if request.method == 'POST':
-        task: Task = Task.objects.get(pk=pk)
         task.header = request.POST.get('header')
         task.description = request.POST.get('description')
         task.status = request.POST.get('status')
@@ -42,7 +41,6 @@ def edit_view(request: WSGIRequest, pk):
         task.save()
         return redirect('/')
 
-    task: Task = Task.objects.get(pk=pk)
     task.deadline = datetime.datetime.strftime(task.deadline, '%Y-%m-%d')
     context = {
         'task': task,
@@ -61,7 +59,7 @@ def about_view(request):
 
 
 def detail_view(request, pk):
-    task = Task.objects.get(pk=pk)
+    task = get_object_or_404(Task, pk=pk)
     context = {
         'task': task
     }
