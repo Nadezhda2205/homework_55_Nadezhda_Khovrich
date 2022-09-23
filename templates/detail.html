@@ -15,5 +15,7 @@
         {{ task.status }}
     <h5>Дата выполнения:</h5>
         {{ task.deadline }}
+    <p><a href="{% url 'task_edit' task.pk  %}">Редактировать</a></p>
+    <a href="{% url 'task_delete' task.pk  %}">Удалить</a>
 
 {% endblock %}
