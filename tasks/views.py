@@ -3,6 +3,7 @@ from tasks.models import Task
 from django.core.handlers.wsgi import WSGIRequest
 from tasks.services.config import CHOICES
 import datetime
+from tasks.forms import TaskForm
 
 
 def index_view(request):
@@ -16,18 +17,21 @@ def index_view(request):
 
 def add_view(request:WSGIRequest):
     if request.method == 'POST':
-        task_data = {
-            'header': request.POST.get('header'),
-            'description': request.POST.get('description'),
-            'status': request.POST.get('status'),
-            'deadline': request.POST.get('deadline')
-        }
+        form = TaskForm(request.POST)
+        if not form.is_valid():
+            context = {
+            'choices': CHOICES,
+            'form': form
+            }  
+            return render(request=request, template_name='add.html', context=context)
 
-        task: Task = Task.objects.create(**task_data)
+        task: Task = Task.objects.create(**form.cleaned_data)
         return redirect('task_detail', pk=task.pk)
-
+        
+    form = TaskForm()
     context = {
-        'choices': CHOICES
+        'choices': CHOICES,
+        'form': form
     }    
     return render(request=request, template_name='add.html', context=context)
 
