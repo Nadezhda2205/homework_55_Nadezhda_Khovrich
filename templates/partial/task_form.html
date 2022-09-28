@@ -1,0 +1,20 @@
+<textarea name="header" cols="30" rows="10">{{ task.header }}</textarea>
+<h5>Подробное описание:<h5>
+<textarea name="description" cols="50" rows="10">{{ task.description }}</textarea>
+<h5>Статус:</h5>
+<select name="status">
+
+    {% for choice in choices %}
+        {% if task.status == choice.1 %}
+            <option value="{{ choice.1 }}" selected>{{ choice.1 }}</option>
+        {% else %}
+            <option value="{{ choice.1 }}">{{ choice.1 }}</option>
+        {% endif %}
+    {% endfor %}
+
+</select>
+<h5>Дата выполнения:</h5>
+<input type="text" name="deadline" value="{{ task.deadline }}"> 
+<div>
+    <input class="mt-3" type="submit" value="{{ button_text }}">
+</div>
