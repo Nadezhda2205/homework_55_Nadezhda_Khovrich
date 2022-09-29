@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Детальный просмотр 
+{% endblock %}
+
+
+ {% block content %}
+    <h5>Задача:</h5>
+        {{ task.header }}
+    <h5>Подробное описание:<h5>
+        {{ task.description }}   
+    <h5>Статус:</h5>
+        {{ task.status }}
+    <h5>Дата выполнения:</h5>
+        {{ task.deadline }}
+
+    <h1>Вы точно хотите удалить задачу?</h1>
+    <form action="{% url 'confirm_delete' task.pk %}" method="POST">
+        {% csrf_token %}
+        <p><a href="{% url 'index' %}">Нет</a></p>
+        <input type="submit" value="Да">
+    </form>
+{% endblock %}

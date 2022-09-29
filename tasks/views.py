@@ -7,7 +7,7 @@ from tasks.forms import TaskForm
 
 
 def index_view(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(is_deleted=False)
     context = {
         'tasks': tasks,
         'choices': CHOICES
@@ -55,8 +55,17 @@ def edit_view(request: WSGIRequest, pk):
 
 
 def delete_view(request, pk):
-    Task.objects.filter(pk=pk).delete()
-    return redirect('/')
+    task = get_object_or_404(Task, pk=pk)
+    context = {
+        'task': task
+    }
+    return render(request, 'confirm_delete.html', context)
+
+
+def confirm_delete(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.delete()
+    return redirect('index')
 
 
 def about_view(request):

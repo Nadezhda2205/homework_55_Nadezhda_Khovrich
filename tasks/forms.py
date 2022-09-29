@@ -11,3 +11,4 @@ class TaskForm(forms.Form):
         initial=date.today(),
         label='Дата выполнения'
         )
+
