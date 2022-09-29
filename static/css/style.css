@@ -1,5 +1,7 @@
 body{
-    background-color: rgb(152, 183, 219);
+    /* background-color: rgb(152, 183, 219); */
+    /* background: linear-gradient(#b028ae, #E8D9A9) fixed; */
+    background: #c97ac7ba;
 }
 
 .decor{
